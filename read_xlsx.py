@@ -31,7 +31,7 @@ def get_trivial(BAN_WORD, BAN_TAG, MAX_SIZE):
 			i+=1
 	return trivial
 
-tmp = get_trivial(["_", "\'", "&", "\"", ":", "(", ")"], [], 100)
-print(len(tmp[0]))
-for i in range(len(tmp[0])):
-	print(i, " : " , tmp[1][i], ":", tmp[2][i])
+#tmp = get_trivial(["_", "'", "&", '"', ":", "(", ")"], [], 100)
+#print(len(tmp[0]))
+#for i in range(len(tmp[0])):
+#	print(i, " : " , tmp[1][i], ":", tmp[2][i])
