@@ -19,8 +19,11 @@ trivial = [[],[],[]]
 sheet = wb.sheet_by_index(3)
 for j in range(3):
 	for i in range(1, sheet.nrows):
-		if sheet.cell_value(i, j*4) and sheet.cell_value(i, j*4 + 1) and sheet.cell_value(i, j*4 + 2):
+		if sheet.cell_value(i, j*4) and sheet.cell_value(i, j*4 + 1) and sheet.cell_value(i, j*4 + 2) and not any(x in sheet.cell_value(i, j*4 + 1) for x in ["_", "\'", "&", "\"", ":"]):
 			trivial[0].append(sheet.cell_value(i, j*4))
 			trivial[1].append(sheet.cell_value(i, j*4 + 1))
 			trivial[2].append(sheet.cell_value(i, j*4 + 2))
 
+print(len(trivial[0]))
+for i in range(len(trivial[0])):
+	print(trivial[1][i], ":", trivial[2][i])
