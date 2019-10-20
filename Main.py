@@ -7,10 +7,18 @@ import QandA_data
 from Custom_keras_Encoder_Decoder import Encoder_Decoder, load_Encoder_Decoder
 import Encoder_Decoder_for_dummies
 import Preprocess
+from read_xlsx import get_trivial
+from prep_data import preprocess_data
+
+MAX_SIZE = 100
 
 qanda = QandA_data.QandA_data()
-questions, answers = qanda.get_data()
-print(questions)
+#questions, answers = qanda.get_data()
+#print(len(questions), len(answers))
+#questions, answers = preprocess_data(questions, answers)
+questions, answers = preprocess_data(get_trivial(["_", "\'", "&", "\"", ":", "(", ")"], [], MAX_SIZE)[1], get_trivial(["_", "\'", "&", "\"", ":", "(", ")"], [], MAX_SIZE)[2])
+
+#print (questions[4250],"\n", answers[4250])
 preprocess = Preprocess.Preprocess(questions, answers)
 
 def str_to_tokens(sentence : str):
@@ -23,9 +31,9 @@ def str_to_tokens(sentence : str):
 
 ed = Encoder_Decoder_for_dummies.ED_dummies(preprocess)
 
-#ed.train(1)
-#ed.save("saves")
-ed.load("saves")
+ed.train(epochs=500, batch_size=1000)
+ed.save("saves")
+#ed.load("saves")
 
 enc_model , dec_model = ed.get_enc_dec()
 #for epoch in questions:

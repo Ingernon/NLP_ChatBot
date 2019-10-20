@@ -3,6 +3,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import tensorflow as tf
 from tensorflow.keras import layers , activations , models , preprocessing , utils
 import pickle
+import numpy as np
 import tempfile
 
 ED_DEBUG = True
@@ -49,9 +50,9 @@ class Encoder_Decoder():
 		if ED_DEBUG:
 			self.model.summary()
 
-	def train(self, x_train, y_train, epochs=100):
+	def train(self, x_train, y_train, epochs=100, batch_size=1000):
 		if self.model:
-			self.model.fit(x_train, y_train, epochs=epochs)
+			self.model.fit(x_train, y_train, epochs=epochs, batch_size=batch_size)
 			self.trained = True
 		else:
 			print("ERROR train use define_model")

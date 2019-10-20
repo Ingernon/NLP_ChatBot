@@ -2,8 +2,7 @@ import os
 import string
 import yaml
 
-DATA_PATH = './data/'
-
+DATA_PATH = './interface/'
 
 class QandA_data():
 	def __init__(self):
@@ -12,20 +11,13 @@ class QandA_data():
 		self.init_data()
 
 	def init_data(self):
-		ls = os.listdir(DATA_PATH + os.sep)
-		for filepath in ls:
-			file = open( DATA_PATH + os.sep + filepath , 'rb')
-			text = yaml.safe_load(file)
-			conversations = text['conversations']
-			for con in conversations:
-				if len( con ) > 2 :
-					replies = con[1:]
-					for rep in replies:
-						self.questions.append(str(con[0].lower()).translate(str.maketrans('', '', string.punctuation)))
-						self.answers.append('<START> '+str(rep.lower()).translate(str.maketrans('', '', string.punctuation))+' <END>')
-				elif len(con)> 1:
-					self.questions.append(str(con[0].lower()).translate(str.maketrans('', '', string.punctuation)))
-					self.answers.append('<START> '+str(con[1]).lower().translate(str.maketrans('', '', string.punctuation))+' <END>')
+		with open(DATA_PATH+"dailylife.txt") as fp:
+			for cnt, line in enumerate(fp):
+				#print("Line {}: {}".format(cnt, line))
+				if cnt % 2 == 1:
+					self.questions.append(str(line.lower()).translate(str.maketrans('', '', string.punctuation)))
+				else:
+					self.answers.append(str(line).lower().translate(str.maketrans('', '', string.punctuation)))
 
 	def get_data(self):
 		if len(self.answers) == len(self.questions):
@@ -35,4 +27,5 @@ class QandA_data():
 
 if __name__ == "__main__":
 	qanda = QandA_data()
-	print(len(qanda.answers))
+	print(qanda.answers[205])
+	print(qanda.questions[205])

@@ -12,9 +12,9 @@ class ED_dummies():
 		self.enc_model = None
 		self.dec_model = None
 
-	def train(self, epochs=100):
+	def train(self, epochs=100, batch_size=1000):
 		self.ed.define_model(self.preprocess.num_que_tokens, self.preprocess.num_ans_tokens)
-		self.ed.train([self.preprocess.encoder_input_data , self.preprocess.decoder_input_data], self.preprocess.decoder_target_data, 10)
+		self.ed.train([self.preprocess.encoder_input_data , self.preprocess.decoder_input_data], self.preprocess.decoder_target_data, epochs=epochs, batch_size=batch_size)
 		self.enc_model , self.dec_model = self.ed.make_inference_models()
 
 	def save(self, name):
