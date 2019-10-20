@@ -13,14 +13,13 @@ from prep_data import preprocess_data
 MAX_SIZE = 100
 
 qanda = QandA_data.QandA_data()
-questions, answers = qanda.get_data()
+#questions, answers = qanda.get_data()
 #print(len(questions), len(answers))
 #questions, answers = preprocess_data(questions, answers)
-#questions, answers = preprocess_data(get_trivial(["_", "\'", "&", "\"", ":", "(", ")"], [], MAX_SIZE)[1], get_trivial(["_", "\'", "&", "\"", ":", "(", ")"], [], MAX_SIZE)[2])
+questions, answers = preprocess_data(get_trivial(["_", "\'", "&", "\"", ":", "(", ")"], [], MAX_SIZE)[1], get_trivial(["_", "\'", "&", "\"", ":", "(", ")"], [], MAX_SIZE)[2])
 
 #print (questions[4250],"\n", answers[4250])
 preprocess = Preprocess.Preprocess(questions, answers)
-
 
 def str_to_tokens(sentence : str):
 	words = sentence.lower().split()
