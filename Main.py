@@ -10,15 +10,8 @@ import Preprocess
 
 qanda = QandA_data.QandA_data()
 questions, answers = qanda.get_data()
-
+print(questions)
 preprocess = Preprocess.Preprocess(questions, answers)
-
-# ed = Encoder_Decoder()
-# ed.define_model(preprocess.num_que_tokens, preprocess.num_ans_tokens)
-# ed.train([preprocess.encoder_input_data , preprocess.decoder_input_data], preprocess.decoder_target_data, 10)
-# # ed.save()
-# # ed.load(preprocess.num_que_tokens, preprocess.num_ans_tokens)
-
 
 def str_to_tokens(sentence : str):
 	words = sentence.lower().split()
@@ -30,7 +23,7 @@ def str_to_tokens(sentence : str):
 
 ed = Encoder_Decoder_for_dummies.ED_dummies(preprocess)
 
-#ed.train()
+#ed.train(1)
 #ed.save("saves")
 ed.load("saves")
 

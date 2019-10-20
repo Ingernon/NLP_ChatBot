@@ -18,12 +18,12 @@ class QandA_data():
 			text = yaml.safe_load(file)
 			conversations = text['conversations']
 			for con in conversations:
-				if type( con ) == str and len( con ) > 2 :
+				if len( con ) > 2 :
 					replies = con[1:]
 					for rep in replies:
 						self.questions.append(str(con[0].lower()).translate(str.maketrans('', '', string.punctuation)))
 						self.answers.append('<START> '+str(rep.lower()).translate(str.maketrans('', '', string.punctuation))+' <END>')
-				elif type( con ) == str and len(con)> 1:
+				elif len(con)> 1:
 					self.questions.append(str(con[0].lower()).translate(str.maketrans('', '', string.punctuation)))
 					self.answers.append('<START> '+str(con[1]).lower().translate(str.maketrans('', '', string.punctuation))+' <END>')
 
