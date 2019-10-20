@@ -233,9 +233,10 @@
         $.ajax({
             type: 'GET',
             url: 'http://127.0.0.1:5000/bot',
-            dataType: "html",
+            dataType: "text",
             data: {text:text},
     success: function(result){
+            alert(result)
                 add_message(result, "Bot", 'http://nicesnippets.com/demo/man01.png');
             },
             error: function(result, error){

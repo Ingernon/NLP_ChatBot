@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import request
+from Bot import *
 app = Flask(__name__)
 
 
@@ -9,8 +10,9 @@ def bot():
     # text => what the user sends
 
     # handle the AI
-    
-    return "Its answer"; # => what the bot answers
+    ans = get_ans(text)
+    print (ans)
+    return  ans# => what the bot answers
 
 @app.route('/chat')
 def chat():

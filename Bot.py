@@ -3,7 +3,7 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import tensorflow as tf
 from tensorflow.keras import preprocessing , utils
-import QandA_data
+import QandA_data2 as QandA_data
 from Custom_keras_Encoder_Decoder import Encoder_Decoder, load_Encoder_Decoder
 import Encoder_Decoder_for_dummies
 import Preprocess
@@ -36,9 +36,9 @@ ed = Encoder_Decoder_for_dummies.ED_dummies(preprocess)
 ed.load("saves")
 
 enc_model , dec_model = ed.get_enc_dec()
-#for epoch in questions:
-while True:
-	states_values = enc_model.predict(str_to_tokens(input('->')))
+
+def get_ans(txt):
+	states_values = enc_model.predict(str_to_tokens(txt))
 	empty_target_seq = np.zeros( ( 1 , 1 ) )
 	empty_target_seq[0, 0] = preprocess.ans_word_dict['start']
 	stop_condition = False
@@ -58,5 +58,4 @@ while True:
 		empty_target_seq = np.zeros( ( 1 , 1 ) )  
 		empty_target_seq[ 0 , 0 ] = sampled_word_index
 		states_values = [ h , c ] 
-
-	print("<-",decoded_translation,"\n" )
+	return decoded_translation
