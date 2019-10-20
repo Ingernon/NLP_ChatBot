@@ -1,6 +1,6 @@
 import xlrd 
   
-path = ("data/Trivia-Printable.xlsx") 
+path = ("data_others/Trivia-Printable.xlsx") 
 wb = xlrd.open_workbook(path) 
 
 def get_trivial(BAN_WORD, BAN_TAG, MAX_SIZE):
@@ -24,7 +24,7 @@ def get_trivial(BAN_WORD, BAN_TAG, MAX_SIZE):
 				trivial[2].append(sheet.cell_value(i, j*4 + 2))
 	i = 0
 	while i in range(len(trivial[0])):
-		if (any(x in trivial[1][i] for x in BAN_WORD) or len(trivial[1][i]) > MAX_SIZE):
+		if (any(x in trivial[1][i] for x in BAN_WORD) or any(x in str(trivial[2][i]) for x in BAN_WORD) or len(trivial[1][i]) > MAX_SIZE):
 			for j in range(3):
 				del trivial[j][i]
 		else :
