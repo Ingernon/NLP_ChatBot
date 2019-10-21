@@ -21,4 +21,5 @@ def chat():
         return content;
 
 if __name__ == '__main__':
-    app.run()
+	app.run(host='192.168.137.1', debug=True)
+    #app.run()

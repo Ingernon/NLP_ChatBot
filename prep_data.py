@@ -28,5 +28,7 @@ def preprocess_data(questions, answers):
 		i +=1
 	return questions, answers
 
-# trivial = get_trivial(["_", "\'", "&", "\"", ":", "(", ")", ".0"], [], MAX_SIZE)
-# questions, answers = preprocess_data(trivial[1], trivial[2])
+trivial = get_trivial(["_", "\'", "&", "\"", ":", "(", ")", ".0"], [], MAX_SIZE)
+questions, answers = preprocess_data(trivial[1], trivial[2])
+
+print(questions[1],"\n", answers[1])

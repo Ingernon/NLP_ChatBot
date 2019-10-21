@@ -10,16 +10,16 @@ import Preprocess
 from read_xlsx import get_trivial
 from prep_data import preprocess_data
 
-MAX_SIZE = 100
+MAX_SIZE = 1000
 
-qanda = QandA_data.QandA_data()
-questions, answers = qanda.get_data()
-print(len(questions), len(answers))
-#questions, answers = preprocess_data(questions, answers)
-#questions, answers = preprocess_data(get_trivial(["_", "\'", "&", "\"", ":", "(", ")"], [], MAX_SIZE)[1], get_trivial(["_", "\'", "&", "\"", ":", "(", ")"], [], MAX_SIZE)[2])
+#qanda = QandA_data.QandA_data()
+#questions, answers = qanda.get_data()
+#print(len(questions), len(answers))
+questions, answers = preprocess_data(get_trivial(["_", "\'", "&", "\"", ":", "(", ")"], [], MAX_SIZE)[1], get_trivial(["_", "\'", "&", "\"", ":", "(", ")"], [], MAX_SIZE)[2])
 
 #print (questions[4250],"\n", answers[4250])
-preprocess = Preprocess.Preprocess(questions, answers)
+#questions, answers = preprocess_data(questions, answers)
+preprocess = Preprocess.Preprocess(questions[:10000], answers[:10000])
 
 def str_to_tokens(sentence : str):
 	words = sentence.lower().split()
@@ -31,9 +31,9 @@ def str_to_tokens(sentence : str):
 
 ed = Encoder_Decoder_for_dummies.ED_dummies(preprocess)
 
-#ed.train(epochs=500, batch_size=1000)
-#ed.save("saves")
-ed.load("saves")
+ed.train(epochs=500, batch_size=1000)
+ed.save("saves")
+#ed.load("saves")
 
 enc_model , dec_model = ed.get_enc_dec()
 #for epoch in questions:
