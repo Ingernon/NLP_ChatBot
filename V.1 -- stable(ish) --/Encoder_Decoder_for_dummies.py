@@ -14,7 +14,7 @@ class ED_dummies():
 
 	def train(self, epochs=100):
 		self.ed.define_model(self.preprocess.num_que_tokens, self.preprocess.num_ans_tokens)
-		self.ed.train([self.preprocess.encoder_input_data , self.preprocess.decoder_input_data], self.preprocess.decoder_target_data, epochs=100)
+		self.ed.train([self.preprocess.encoder_input_data , self.preprocess.decoder_input_data], self.preprocess.decoder_target_data, epochs=epochs)
 		self.enc_model , self.dec_model = self.ed.make_inference_models()
 
 	def save(self, name):

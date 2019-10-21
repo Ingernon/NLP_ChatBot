@@ -24,7 +24,7 @@ def str_to_tokens(sentence : str):
 
 ed = Encoder_Decoder_for_dummies.ED_dummies(preprocess)
 
-#ed.train()
+#ed.train(epochs=500)
 #ed.save("saves")
 ed.load("saves")
 
